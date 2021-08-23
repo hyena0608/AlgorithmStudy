@@ -1,20 +1,19 @@
-# 명령 프롬프트
+import math
 
-import sys
+n = int(input())
+arr = list(map(int, input().split()))
+sum = 0
+is_prime = False
+for i in range(n):
+  for j in range(2, int(math.sqrt(arr[i])) + 1):
+    print(arr[i], j)
+    if arr[i] % j == 0:
+      is_prime = False
+      break
+    else:
+      is_prime = True
+  if is_prime == True: 
+    sum += 1
+  is_prime = False
 
-n = int(sys.stdin.readline().rstrip())
-
-arr = []
-for _ in range(n):
-  arr.append(sys.stdin.readline().rstrip())
-
-answer = []
-for i in range(len(arr[0])):
-  answer += (arr[0][i])
-
-for j in range(n-1):
-  for i in range(len(arr[0])):
-    if arr[0][i] != arr[j+1][i]:
-      answer[i] = '?'
-
-print(''.join(answer))
+print(sum)
