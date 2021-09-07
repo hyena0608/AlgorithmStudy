@@ -1,19 +1,32 @@
+from collections import deque
 n = int(input())
 
-graph = [[0] * (n + 1) for _ in range(n + 1)]
+graph = [0]
 
-for i in range(1, n + 1):
-  a, b, c = map(int, input().split())
-  graph[i][1] = a
-  graph[i][2] = b
-  graph[i][3] = c
+for _ in range(n):
+  graph += list(map(int, input().split()))
 
-# 아래 오른쪽 
-dx = [1, 0]
-dy = [0 ,1]
-# 시작 위치
-a = 1 
-b = 1
-# while a == 3 or b == 3:
-def move(a, b):
-  a 
+start = 1
+
+q = deque([start])
+reached = False
+while q:
+  now = q.popleft()
+  if now == n*n:
+    reached = True
+    break
+  else:
+    jump = graph[now]
+    if now % n != 0:
+      if now // n == (now + 1 * jump) // n or (now + 1 * jump % n == 0):
+      # if now + 1 * jump <= n*n:
+        q.append(now + 1 * jump)
+    
+    if now + n * jump <= n*n:
+      q.append(now + n * jump)
+
+    
+if reached:
+  print("HaruHaru")
+else:
+  print("Hing")
