@@ -1,32 +1,18 @@
-from collections import deque
-n = int(input())
+x = int(input())
 
-graph = [0]
+stars = [[' ' for _ in range(x)] for _ in range(x)]
 
-for _ in range(n):
-  graph += list(map(int, input().split()))
-
-start = 1
-
-q = deque([start])
-reached = False
-while q:
-  now = q.popleft()
-  if now == n*n:
-    reached = True
-    break
-  else:
-    jump = graph[now]
-    if now % n != 0:
-      if now // n == (now + 1 * jump) // n or (now + 1 * jump % n == 0):
-      # if now + 1 * jump <= n*n:
-        q.append(now + 1 * jump)
-    
-    if now + n * jump <= n*n:
-      q.append(now + n * jump)
-
-    
-if reached:
-  print("HaruHaru")
-else:
-  print("Hing")
+def all_star(n, x, y):
+    if n == 1:
+        stars[y][x] = '*'
+        
+    else:
+        m = n // 3
+        for dy in range(3):
+            for dx in range(3):
+                if dy != 1 or dx != 1:
+                    all_star(m, x+dx*m, y+dy*m)
+                    
+all_star(x, 0, 0)
+for i in stars:
+    print(''.join(i))
