@@ -1,59 +1,110 @@
-n = int(input())
-# VLR -> LRV
-# 5 24 28 30 34 50 52 60 98
-# 50 30 24 5 28 45 / 98 52 60
-# 5 28 24 45 30 60 52 98 50
-graph = [0]
+import sys
 
-for i in range(n):
-    graph.append(int(input()))
-# graph.sort()
-
-visited = [False] * (n + 1)
-center = graph[1]
-index = [[] for _ in range(n + 1)]
-# print(index)
-def search(i, index):
-    print(i)
-    # print(visited)
-    if not visited[i]:
-        if graph[1] >= graph[i]:
-            if graph[i] > graph[i + 1]:
-                index[i].append(i + 1)
-                index[i + 1].append(i)
-                visited[i] = True
-                return search(i + 1, index)
-            else:
-                if graph[i - 1] < graph[i + 1]:
-                    index[i - 1].append(i + 1)
-                    index[i + 1].append(i - 1)
-                    return search(i + 1, index)
-                else:
+INF = 9999999
+N = input()
+brokenCount = int(input())
+if brokenCount != 0:
+    brokenNum = list(map(int, input().split()))
 
 
-                # index[i + 1].append(i - 1)
-                # visited[i + 1] = True
-                # return search(i + 2, index)
-        # else:
-        #     if graph[i] > graph[i + 1]:
-        #         index[i].append(i + 1)
-        #         index[i + 1].append(i)
-        #         visited[i] = True
-        #         search(i + 1, index)
-        #     else:
-        #         visited[i] = True
-        #         index[i + 1].append(i)
-        #         index[i].append(i + 1)
-search(1, index)
-print(index)
+channel = []
+for ch in N:
+    channel.append(int(ch))
 
 
-# for i in range(2, n + 1):
-#     if center > graph[i]:
-        
+minus_ch = []
+plus_ch = []
+def count():
 
+    # 첫 시작이 brokenNum 일 때
+    if channel[0] in brokenNum:
 
-visited = [False] * (n + 1)
+        # minus_ch[0]
+        temp_ch = channel[0]
+        while True:
+            temp_ch -= 1
+            # 방어 코드
+            if temp_ch < 0:
+                minus_ch.append(INF)
+                break
+            # append minus_ch
+            if temp_ch not in channel:
+                minus_ch.append(temp_ch)
+                break
 
-# def LRV(graph, n, visited):
+        # plus_ch[0]
+        temp_ch = channel[0]
+        while True:
+            temp_ch += 1
+            # 방어 코드
+            if temp_ch > 9:
+                plus_ch.append(INF)
+                break
+            # append plus_ch
+            if temp_ch not in channel:
+                plus_ch.append(temp_ch)
+        # minus_ch
+        for num in range(9, 0, -1):
+            if num not in brokenNum:
+                for _ in range(len(N) - 1):
+                    minus_ch.append(num)
+                break
     
+        # plus_ch
+        for num in range(9):
+            if num not in brokenNum:
+                for _ in range(len(N) - 1):
+                    plus_ch.append(num)
+                break
+    
+    # 첫 시작이 정상 작동 할 때
+    else:
+        # 정상 작동이 끝날 때 까지
+        while True:
+            for ch in channel:
+                if ch not in brokenNum:
+                    minus_ch.append(ch)
+                    plus_ch.append(ch)
+                else:
+                    break
+            break
+
+        # minus_ch
+        for num in range(9):
+            if num not in brokenNum:
+                for _ in range(len(channel) - len(minus_ch)):
+                    minus_ch.append(num)
+                break
+    
+        # plus_ch
+        for num in range(9, 0, -1):
+            if num not in brokenNum:
+                for _ in range(len(channel) - len(plus_ch)):
+                    plus_ch.append(num)
+                break
+
+
+    # make list to int
+    min_ch = ''
+    max_ch = ''
+    for ch in minus_ch:
+        min_ch += str(ch)
+    for ch in plus_ch:
+        max_ch += str(ch)
+    min_ch = int(min_ch)   
+    max_ch = int(max_ch)
+
+
+    # compare counts
+    if abs(min_ch - int(N)) > abs(max_ch - int(N)):
+        print(abs(max_ch - int(N)) + len(N))
+    else:
+        print(abs(min_ch - int(N)) + len(N))
+
+if N != '100':
+    if brokenCount == 0:
+        sys.exit
+    else:
+        count()
+else:
+    print(0)
