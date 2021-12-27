@@ -84,4 +84,3 @@ for i in range(len(shape1Y)):
         if keepY == False:
             break
 print(maxSum)
-    

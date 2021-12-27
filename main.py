@@ -1,18 +1,41 @@
-channel = int(input())
-brokenCount = int(input())
+import sys
+input = sys.stdin.readline
+n, m = map(int, input().split())
 
-if brokenCount != 0:
-    brokenNum = input().split()
-else:
-    brokenNum = []
-answer = abs(channel - 100)
-for i in range(1000000):
-    ok = True
-    for thisNum in list(str(i)):
-        if thisNum in brokenNum:
-            ok = False
-            break   
-    if ok:
-        answer = min(answer, abs(channel - i) + len(str(i)))
+arr = []
 
-print(answer)
+for _ in range(n):
+    arr.append(list(map(int, input().split())))
+
+shape1Y = [[0, 0, 0, 0], [0, 1, 2, 3], [0, 1, 0, 1], [0, 1, 2, 2], [1, 1, 1, 0], [0, 0, 1, 2], [0, 1, 0, 0], [0, 1, 1, 2], [1, 1, 0, 0], [0, 0, 0, 1], [0, 1, 1, 2], [0, 1, 1, 1], [1, 0, 1, 2], [0, 1, 2, 2], [0, 1, 1, 1], [0, 1, 2, 0], [0, 0, 0, 1], [1, 2, 0, 1], [0, 0, 1, 1]]
+shape1X = [[0, 1, 2, 3], [0, 0, 0, 0], [0, 0, 1, 1], [0, 0, 0, 1], [0, 1, 2, 2], [0, 1, 1, 1], [0, 0, 1, 2], [0, 0, 1, 1], [0, 1, 1, 2], [0, 1, 2, 1], [0, 0, 1, 0], [1, 0, 1, 2], [0, 1, 1, 1], [1, 1, 1, 0], [0, 0, 1, 2], [0, 0, 0, 1], [0, 1, 2, 2], [0, 0, 1, 1], [0, 1, 1, 2]]
+
+maxSum = 0
+sum = 0
+
+for i in range(len(shape1Y)):
+    lenX = max(shape1X[i]) - min(shape1X[i])
+    lenY = max(shape1Y[i]) - min(shape1Y[i])
+    for y in range(n):
+        keepY = True
+        for x in range(m):
+            keepX = True
+            if lenX + x >= m:
+                    sum = 0
+                    keepX = False
+                    break
+            elif lenY + y >= n:
+                    sum = 0
+                    keepY = False
+                    break
+            else:
+                for j in range(4):
+                    sum += arr[shape1Y[i][j] + y][shape1X[i][j] + x]
+            if keepX == False:
+                break
+            if maxSum < sum:
+                maxSum = sum
+            sum = 0
+        if keepY == False:
+            break
+print(maxSum)
