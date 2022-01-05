@@ -1,87 +1,24 @@
-n, m = map(int, input().split())
+import queue
+import math
 
-arr = []
+def solution(progresses, speeds):
+    day = {}
+    ans = []
+    for i in range(len(progresses)):
+        day_need = math.ceil((100 - progresses[i]) / speeds[i])
+        if len(day) == 0:
+            day[day_need] = 1
+            ans.append(day_need)
+            continue
 
-for _ in range(n):
-    arr.append(list(map(int, input().split())))
-# print(arr)
+        if ans[-1] >= day_need:
+            day[day_need] += 1
+        else:
+            day[day_need] = 1
+            ans.append(day_need)
+    answer = []
+    for i in ans:
+        answer.append(day[i])
+    return answer
 
-# 'ㅡ'자
-# 0, 180도 회전 : [a, b] [a, b+1] [a, b+2]  [a, b+3]
-# 90, 270도 회전 : [a, b] [a+1, b] [a+2, b] [a+3, b] 
-
-# 'ㅁ'자
-# 0, 90, 180, 270도 회전 : [a, b] [a+1, b] [a, b+1] [a+1, b+1]
-
-# 'ㄴ'자
-# 0도 회전 : [a, b] [a+1, b] [a+2, b] [a+2, b+1]
-# 0도 대칭 : [a, b+1] [a+1, b+1] [a+2, b+1] [a+2, b]
-# 90도 회전 : [a+1, b] [a+1, b+1] [a+1, b+2] [a, b+2]
-# 90도 대칭 : [a, b] [a+1, b] [a+1, b+1] [a+1, b+2]
-# 180도 회전 : [a, b] [a, b+1] [a+1, b+1] [a+2, b+1]
-# 180도 대칭 : [a, b] [a+1, b] [a+2, b] [a, b+1]
-# 270도 회전 : [a, b] [a+1, b] [a, b+1] [a, b+2]
-# 270도 대칭 : [a, b] [a, b+1] [a, b+2] [a+1, b+2] 
-
-
-# 'ㄹ'자
-# 0, 180도 회전 : [a, b] [a+1, b] [a+1, b+1] [a+2, b+1]
-# 0, 180도 대칭 : [a+1, b] [a+2, b] [a, b+1] [a+1, b+1]
-# 90, 270도 회전 : [a+1, b] [a+1, b+1] [a, b+1] [a, b+2]
-# 90, 270도 대칭 : [a, b] [a, b+1] [a+1, b+1] [a+1, b+2]
-
-# 'ㅜ'자
-# 0도 회전 : [a, b] [a, b+1] [a, b+2] [a+1, b+1]
-# 90도 회전 : [a, b] [a+1, b] [a+1, b+1] [a+2, b]
-# 180도 회전 : [a, b+1] [a+1, b] [a+1, b+1] [a+1, b+2]
-# 270도 회전 : [a+1, b] [a, b+1] [a+1, b+1] [a+2, b+1]
-
-# shape1Y = [[0, 0, 0, 0], [0, 1, 2, 3]]
-# shape1X = [[0, 1, 2, 3], [0, 0, 0, 0]]
-# shape2Y = [[0, 1, 0, 1]]
-# shape2X = [[0, 0, 1, 1]]
-# shape3Y = [[0, 1, 2, 2], [1, 1, 1, 0], [0, 0, 1, 2], [0, 1, 0, 0]]
-# shape3X = [[0, 0, 0, 1], [0, 1, 2, 2], [0, 1, 1, 1], [0, 0, 1, 2]]
-# shape4Y = [[0, 1, 1, 2], [1, 1, 0, 0]]
-# shape4X = [[0, 0, 1, 1], [0, 1, 1, 2]]
-# shape5Y = [[0, 0, 0, 1], [0, 1, 1, 2], [0, 1, 1, 1], [1, 0, 1, 2]]
-# shape5X = [[0, 1, 2, 1], [0, 0, 1, 0], [1, 0, 1, 2], [0, 1, 1, 1]]
-
-shape1Y = [[0, 0, 0, 0], [0, 1, 2, 3], [0, 1, 0, 1], [0, 1, 2, 2], [1, 1, 1, 0], [0, 0, 1, 2], [0, 1, 0, 0], [0, 1, 1, 2], [1, 1, 0, 0], [0, 0, 0, 1], [0, 1, 1, 2], [0, 1, 1, 1], [1, 0, 1, 2], [0, 1, 2, 2], [0, 1, 1, 1], [0, 1, 2, 0], [0, 0, 0, 1], [1, 2, 0, 1], [0, 0, 1, 1]]
-shape1X = [[0, 1, 2, 3], [0, 0, 0, 0], [0, 0, 1, 1], [0, 0, 0, 1], [0, 1, 2, 2], [0, 1, 1, 1], [0, 0, 1, 2], [0, 0, 1, 1], [0, 1, 1, 2], [0, 1, 2, 1], [0, 0, 1, 0], [1, 0, 1, 2], [0, 1, 1, 1], [1, 1, 1, 0], [0, 0, 1, 2], [0, 0, 0, 1], [0, 1, 2, 2], [0, 0, 1, 1], [0, 1, 1, 2]]
-
-maxSum = 0
-sum = 0
-
-# 모형
-for i in range(len(shape1Y)):
-    lenX = max(shape1X[i]) - min(shape1X[i])
-    lenY = max(shape1Y[i]) - min(shape1Y[i])
-    # y 좌표
-    for y in range(n):
-        # 모형 y축 길이 + 현 시작 y좌표가 배열 y축 길이를 넘으면 다른 x축 움직임 불가
-        keepY = True
-        # x 좌표
-        for x in range(m):
-            keepX = True
-            if lenX + x >= m:
-                    sum = 0
-                    keepX = False
-                    break
-            elif lenY + y >= n:
-                    sum = 0
-                    keepY = False
-                    break
-            else:
-                # 배열에 위치한 모형 안의 값 더하기
-                for j in range(4):
-                    sum += arr[shape1Y[i][j] + y][shape1X[i][j] + x]
-            if keepX == False:
-                break
-            if maxSum < sum:
-                maxSum = sum
-            sum = 0
-        if keepY == False:
-            break
-print(maxSum)
-    
+print(solution([93, 30, 55], [1, 30, 5]))
