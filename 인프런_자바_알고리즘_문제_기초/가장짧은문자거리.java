@@ -9,7 +9,6 @@ public class 가장짧은문자거리 {
         int[] answer = new int[str.length()];
         int len = str.length();
         int cnt = 101;
-        List<Integer> l = new ArrayList<>();
         for (int i = 0; i < len; i++) {
             if (str.charAt(i) == t) {
                 cnt = 0;
