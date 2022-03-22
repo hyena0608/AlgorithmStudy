@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
-    private static Stream<Integer> stream;
-
     public List<Integer> solution(int n, int m, int[] arrA, int[] arrB) {
         List<Integer> answer = new ArrayList<>();
         int p1 = 0;
