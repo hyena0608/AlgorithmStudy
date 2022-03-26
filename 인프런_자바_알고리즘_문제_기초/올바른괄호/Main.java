@@ -1,36 +1,37 @@
 package 인프런_자바_알고리즘_문제_기초.올바른괄호;
 
 import java.io.*;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
-    public String solution(String parentheses) {
+    public String solution(String parenthesese) {
         String answer = "YES";
-        char leftShape = '(';
-        char rightShape = ')';
-        int leftCount = 0;
-        int rightCount = 0;
+        Stack<Character> parenthesisStack = new Stack<>();
 
-        for (char parenthesis : parentheses.toCharArray()) {
+        for (char c : parenthesese.toCharArray()) {
 
-            if (parenthesis == leftShape) {
-                leftCount++;
-            } else if (parenthesis == rightShape) {
-                rightCount++;
-            }
+            if (c == '(') {
+                parenthesisStack.push(c);
+            } else {
 
-            if (rightCount > leftCount) {
-                answer = "NO";
-                break;
+                if (parenthesisStack.isEmpty()) {
+                    answer = "NO";
+                    break;
+                } else {
+                    parenthesisStack.pop();
+                }
+
             }
 
         }
 
-        if (rightCount != leftCount) {
+        if (!parenthesisStack.isEmpty()) {
             answer = "NO";
         }
 
         return answer;
+
     }
 
     public static void main(String[] args) throws IOException {
