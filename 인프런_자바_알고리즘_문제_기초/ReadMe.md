@@ -2,6 +2,49 @@
 
 > 모든 문제는 노션에 풀이가 있습니다 !
 
+
+[미로탐색](https://www.notion.so/wizardcoding/8a2b4e4842d74b0bb33434a119aea8fe)
+
+[조합의 경우 수 (메모이제이션)](https://www.notion.so/767be96478f640b0b6f35f9a70cda6c5)
+
+[동전교환](https://www.notion.so/510997b4f9fd4e27902e7e604599f32f)
+
+[최대 점수 구하기](https://www.notion.so/556c51ca6e044bf68abb54413331794f)
+
+[바둑이 승차](https://www.notion.so/8184e17987dc46d484fa33894ec5534b)
+
+[합이 같은 부분집합](https://www.notion.so/05788fd2faa849d4b254fea5a53e7b8d)
+
+[송아지 찾기 1](https://www.notion.so/1-878a8773d7754f5cad1d5e3d5fc203cb)
+
+[뮤직비디오](https://www.notion.so/2318d68bf04d410c9269fa7e8f253377)
+
+[좌표 정렬](https://www.notion.so/64bdc913bfe14cf99cf24c4fb9f7f572)
+
+[중복 확인](https://www.notion.so/8d9e2cda26994890bb6053c37f0668ff)
+
+[장난꾸러기](https://www.notion.so/1132e2fd059647d68b6ed3aa58186ea1)
+
+[조합의 경우 수 (메모이제이션)](https://www.notion.so/767be96478f640b0b6f35f9a70cda6c5)
+
+[동전교환](https://www.notion.so/510997b4f9fd4e27902e7e604599f32f)
+
+[최대 점수 구하기](https://www.notion.so/556c51ca6e044bf68abb54413331794f)
+
+[바둑이 승차](https://www.notion.so/8184e17987dc46d484fa33894ec5534b)
+
+[합이 같은 부분집합](https://www.notion.so/05788fd2faa849d4b254fea5a53e7b8d)
+
+[송아지 찾기 1](https://www.notion.so/1-878a8773d7754f5cad1d5e3d5fc203cb)
+
+[뮤직비디오](https://www.notion.so/2318d68bf04d410c9269fa7e8f253377)
+
+[좌표 정렬](https://www.notion.so/64bdc913bfe14cf99cf24c4fb9f7f572)
+
+[중복 확인](https://www.notion.so/8d9e2cda26994890bb6053c37f0668ff)
+
+[장난꾸러기](https://www.notion.so/1132e2fd059647d68b6ed3aa58186ea1)
+
 [Least Recently Used](https://www.notion.so/wizardcoding/Least-Recently-Used-e22dba8c06604184b89f1b78bee277b0)
 
 [삽입정렬](https://www.notion.so/4c52915fbace4005931076e1585149cd)
