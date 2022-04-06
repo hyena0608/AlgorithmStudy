@@ -2,6 +2,9 @@
 
 > 모든 문제는 노션에 풀이가 있습니다 !
 
+[토마토](https://www.notion.so/wizardcoding/d44ea68697754ef7a179f154bd1f84a4)
+
+[미로의 최단거리 통로](https://www.notion.so/4e4ec44b6f284ce7828423023b330801)
 
 [미로탐색](https://www.notion.so/wizardcoding/8a2b4e4842d74b0bb33434a119aea8fe)
 
