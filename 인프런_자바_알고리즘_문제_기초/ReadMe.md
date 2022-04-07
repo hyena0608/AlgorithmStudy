@@ -2,6 +2,12 @@
 
 > 모든 문제는 노션에 풀이가 있습니다 !
 
+[피자 배달하기 dfs](https://www.notion.so/wizardcoding/dfs-5d8b25ce315c4acd870775b24eedeed4)
+
+[섬나라 아일랜드 bfs](https://www.notion.so/wizardcoding/BFS-c1cb8fdba4ec4503aca893b86f6cd871)
+
+[섬나라 아일랜드 dfs](https://www.notion.so/wizardcoding/DFS-96f8ad281d9342f1b9241d5b05050b8b)
+
 [토마토](https://www.notion.so/wizardcoding/d44ea68697754ef7a179f154bd1f84a4)
 
 [미로의 최단거리 통로](https://www.notion.so/4e4ec44b6f284ce7828423023b330801)
