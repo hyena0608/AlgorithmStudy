@@ -1,13 +1,12 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
 public class main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("nextLine: ");
-        String s = sc.nextLine();
-        System.out.println("next:");
-        String next = sc.next();
-        System.out.println("next = " + next);
+        String[] phone_book = {"34754835", "1195842395"};
+        System.out.println(phone_book[0].startsWith("34"));
+
     }
 }
