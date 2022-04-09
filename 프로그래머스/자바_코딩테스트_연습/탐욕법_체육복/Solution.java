@@ -1,4 +1,4 @@
-package 프로그래머스.탐욕법_체육복;
+package 프로그래머스.자바_코딩테스트_연습.탐욕법_체육복;
 
 import java.util.Arrays;
 

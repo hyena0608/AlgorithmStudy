@@ -1,4 +1,4 @@
-package 프로그래머스.해시_전화번호목록;
+package 프로그래머스.자바_코딩테스트_연습.해시_전화번호목록;
 
 import java.util.HashMap;
 import java.util.Map;

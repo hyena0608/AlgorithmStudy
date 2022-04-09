@@ -1,4 +1,4 @@
-package 프로그래머스.타겟넘버;
+package 프로그래머스.자바_코딩테스트_연습.DFS_타겟넘버;
 
 /**
  * @author hyena
