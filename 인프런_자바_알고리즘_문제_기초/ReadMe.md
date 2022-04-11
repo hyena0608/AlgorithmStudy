@@ -1,8 +1,13 @@
-# 노션 링크
+# 인프런 자바 알고리즘 연습 문제 🚀
 
-> 모든 문제는 노션에 풀이가 있습니다 !
+Java를 이용해서 풀고 있습니다.
 
- 
+모든 문제 풀이는 밑에 [노션 링크](https://www.notion.so/wizardcoding/582d8cc567694b75852286bebf76de1f) 로 들어가시면 됩니다 !
+
+깃허브는 코드만 작성되어 있습니다.
+
+<br>
+
 [씨름 운동](https://www.notion.so/wizardcoding/d2828ce0c7c945aa85338dab18912e5d)
 
 [피자 배달하기 dfs](https://www.notion.so/wizardcoding/dfs-5d8b25ce315c4acd870775b24eedeed4)
