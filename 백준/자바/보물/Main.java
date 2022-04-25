@@ -23,12 +23,27 @@ public class Main {
         }
 
         Arrays.sort(arrA);
-        Arrays.sort(arrB);
+        int[] sortedarrA = new int[n];
+        for (int i = 0; i < n; i++) {
+            int idx = 0;
+            for (int j = 0; j < n; j++) {
+                if (arrB[idx] < arrB[j]) {
+                    idx = j + 1;
+                }
+            }
 
-        int answer = 0;
-        for (int i = n - 1; i >= 0; i--) {
-            answer += arrA[n - i - 1] * arrB[i];
+            if (idx == -1) {
+                sortedarrA[0] = arrA[i] * arrB[0];
+                System.out.println(arrA[i] + " " + arrB[0]);
+            } else {
+                System.out.println(arrA[i] + " " + arrB[idx]);
+
+                sortedarrA[i] = arrA[i] * arrB[idx];
+                arrB[idx] = -1;
+            }
         }
+
+        int answer = Arrays.stream(sortedarrA).sum();
 
         bw.write(answer + "");
         bw.flush();
