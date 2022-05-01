@@ -7,9 +7,10 @@ class Docu {
     int priority;
     int num;
 
+
     public Docu(int priority, int num) {
-        priority = this.priority;
-        num = this.num;
+        this.priority = priority;
+        this.num = num;
     }
 }
 
