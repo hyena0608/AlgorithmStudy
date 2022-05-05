@@ -22,8 +22,9 @@ public class Main {
     public static void dfs(int L, int idx) {
         if (L == m) {
             for (Integer integer : stack) {
-                System.out.println("integer = " + integer);
+                System.out.print(integer + " ");
             }
+            System.out.println();
             calDistance();
         } else {
             for (int i = idx; i < n; i++) {
@@ -47,12 +48,12 @@ public class Main {
     private static void calDistance() {
         int[] distance = new int[house.size()];
         for (int i = 0; i < house.size(); i++) distance[i] = Integer.MAX_VALUE;
-
         for (Integer chickenIdx : stack) {
             Point chickenPoint = chickenShop.get(chickenIdx);
             for (int i = 0; i < house.size(); i++) {
                 int houseY = house.get(i).y;
                 int houseX = house.get(i).x;
+                System.out.println("y : " + houseY + ", x : " + houseX );
                 int houseToChickenDistance = Math.abs(chickenPoint.x - houseX) + Math.abs(chickenPoint.y - houseY);
                 if (houseToChickenDistance < distance[i]) {
                     distance[i] = houseToChickenDistance;
@@ -80,6 +81,9 @@ public class Main {
                     chickenShop.add(new Point(i, j));
                 }
             }
+        }
+        for (Point point : house) {
+            System.out.println("house = " + point.y + ", " + point.x);
         }
         sum = Integer.MAX_VALUE;
         dfs(0, 0);
