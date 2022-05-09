@@ -18,42 +18,17 @@ public class Main {
     static int[][] board = new int[9][9];
     static Stack<Point> blankStack = new Stack<>();
 
-
     public static void main(String[] args) throws IOException {
 
         Main T = new Main();
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        for (int col = 0; col < 9; col++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            for (int row = 0; row < 9; row++) {
-                int value = Integer.parseInt(st.nextToken());
-                if (value == 0) {
-                    blankStack.push(new Point(col, row));
-                }
-                board[col][row] = value;
-            }
-        }
+        T.readSdocu();
         T.backtracking();
-
-        br.close();
     }
 
     public void backtracking() throws IOException {
         if (blankStack.isEmpty()) {
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-            for (int[] cols : board) {
-                for (int value : cols) {
-                    bw.write(value + " ");
-                }
-                bw.write("\n");
-            }
-            bw.flush();
-            bw.close();
-
-            System.exit(0);
+            printSdocuAndSystemExit();
         }
 
         Point polledPoint = blankStack.pop();
@@ -99,6 +74,37 @@ public class Main {
             }
         }
         return false;
+    }
+
+    public void readSdocu() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        for (int col = 0; col < 9; col++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int row = 0; row < 9; row++) {
+                int value = Integer.parseInt(st.nextToken());
+                if (value == 0) {
+                    blankStack.push(new Point(col, row));
+                }
+                board[col][row] = value;
+            }
+        }
+        br.close();
+    }
+
+    public void printSdocuAndSystemExit() throws IOException {
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        for (int[] cols : board) {
+            for (int value : cols) {
+                bw.write(value + " ");
+            }
+            bw.write("\n");
+        }
+        bw.flush();
+        bw.close();
+
+        System.exit(0);
     }
 
 }
