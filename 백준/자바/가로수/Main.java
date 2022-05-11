@@ -22,7 +22,7 @@ public class Main {
         Arrays.sort(betweenDistanceArr);
         int betweenDistance = Integer.MAX_VALUE;
         for (int i = 0; i < n - 2; i++) {
-            betweenDistance = Math.min(betweenDistance, gcd(betweenDistanceArr[i], betweenDistanceArr[i + 1]));
+            betweenDistance = Math.min(betweenDistance, gcd(betweenDistanceArr[i + 1], betweenDistanceArr[i]));
         }
 
         int tmp = treeArr[0];
