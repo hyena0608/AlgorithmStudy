@@ -8,8 +8,8 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static int[] dx = {1, -1, 0, 0};
-    static int[] dy = {0, 0, 1, -1};
+    static int[] dx = {0, 1, -1, 0, 0};
+    static int[] dy = {0, 0, 0, 1, -1};
     static int[][] map;
     static int n;
     static int houseCnt = 0;
@@ -34,11 +34,7 @@ public class Main {
             for (int x = 0; x < n; x++) {
                 if (map[y][x] == 1) {
                     dfs(0, y, x);
-                    if(houseCnt == 0) {
-                        answer.add(1);
-                    } else {
-                        answer.add(houseCnt);
-                    }
+                    answer.add(houseCnt);
                     houseCnt = 0;
                 }
             }
@@ -57,7 +53,7 @@ public class Main {
     }
 
     public static void dfs(int L, int y, int x) {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             int ny = y + dy[i];
             int nx = x + dx[i];
             if (ny >= 0 && ny < n && nx >= 0 && nx < n
