@@ -2,35 +2,19 @@ package 백준.자바.골드바흐의추측;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Main {
 
-    class Oper {
-        int firstNum, secondNum;
-
-        public Oper(int firstNum, int secondNum) {
-            this.firstNum = firstNum;
-            this.secondNum = secondNum;
-        }
-    }
-
-    static List<Integer> sosuList;
-    static List<Integer> nList;
-    static Map<Integer, Oper> operMap;
-    static int maxNum = Integer.MIN_VALUE;
+    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static void main(String[] args) throws IOException {
         Main T = new Main();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        sosuList = new ArrayList<>();
-        nList = new ArrayList<>();
-        operMap = new HashMap<>();
+        List<Integer> nList = new ArrayList<>();
+        boolean[] sosu = new boolean[1000001];
 
         while (true) {
             int n = Integer.parseInt(br.readLine());
@@ -41,32 +25,22 @@ public class Main {
             }
         }
 
-        T.findBiggestNumInnList();
-        T.makeSosuList(maxNum);
-
-
-
-    }
-
-    private void findBiggestNumInnList() {
-        nList.stream().forEach(o -> {
-            maxNum = Math.max(o, maxNum);
-        });
-
-    }
-
-    private void canNotFindN() {
-
-    }
-
-    private void makeSosuList(int num) {
-        sosuList.add(2);
-        for (int i = 3; i <= num; i++) {
-            if (isSosu(i)) {
-                sosuList.add(i);
-            }
+        T.makeSosuArr(sosu);
+        for (Integer num : nList) {
+            T.findRightOperation(sosu, num);
         }
 
+        bw.flush();
+        bw.close();
+        br.close();
+    }
+
+    private void makeSosuArr(boolean[] sosu) {
+        for (int i = 3; i <= 1000000; i++) {
+            if (isSosu(i)) {
+                sosu[i] = true;
+            }
+        }
     }
 
     private boolean isSosu(int num) {
@@ -78,13 +52,21 @@ public class Main {
         return true;
     }
 
-    private void isOdd() {
+    private void findRightOperation(boolean[] sosu, int num) throws IOException {
+        for (int i = 3; i <= num / 2; i++) {
+            StringBuilder stringBuilder = new StringBuilder();
 
+            if (sosu[i] && sosu[num - i]) {
+                stringBuilder.append(num)
+                        .append(" = ")
+                        .append(i)
+                        .append(" + ")
+                        .append(num - i)
+                        .append("\n");
+                bw.write(String.valueOf(stringBuilder));
+                return;
+            }
+        }
+        bw.write("Goldbach's conjecture is wrong.\n");
     }
-
-    private void findBiggestAbs() {
-
-    }
-
-
 }
