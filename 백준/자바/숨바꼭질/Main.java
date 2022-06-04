@@ -12,12 +12,13 @@ public class Main {
 
         StringTokenizer st = new StringTokenizer(br.readLine());
 
+        int[] map = new int[1000001];
         int subin = Integer.parseInt(st.nextToken());
         int bro = Integer.parseInt(st.nextToken());
         int answer = 0;
 
         if (subin != bro) {
-            answer = T.bfs(subin, bro);
+            answer = T.bfs(subin, bro, map);
         }
 
         bw.write(answer + "");
@@ -26,42 +27,33 @@ public class Main {
         br.close();
     }
 
-    private class TimeDis {
-        int time;
-        int distance;
+    private int bfs(int subin, int bro, int[] map) {
+        Queue<Integer> subinQ = new LinkedList<>();
 
-        public TimeDis(int time, int distance) {
-            this.time = time;
-            this.distance = distance;
-        }
-    }
-
-    private int bfs(int subin, int bro) {
-        Queue<TimeDis> subinQ = new LinkedList<>();
-
-        subinQ.offer(new TimeDis(0, subin));
+        subinQ.offer(subin);
+        map[subin] = 1;
         while (!subinQ.isEmpty()) {
-            TimeDis subinPolled = subinQ.poll();
-            if (subinPolled.distance + 1 == bro
-                    || subinPolled.distance - 1 == bro
-                    || subinPolled.distance * 2 == bro) {
-                return subinPolled.time + 1;
+            int subinPolled = subinQ.poll();
+            if (subinPolled + 1 == bro
+                    || subinPolled - 1 == bro
+                    || subinPolled * 2 == bro) {
+                return map[subinPolled];
             }
 
-            if (subinPolled.distance * 2 <= bro) {
-                subinQ.offer(new TimeDis(subinPolled.time + 1, subinPolled.distance * 2));
-            } else {
-                if (subinPolled.distance < bro) {
-                    subinQ.offer(new TimeDis(subinPolled.time + 1, subinPolled.distance + 1));
-                }
-                if (subinPolled.distance > 0) {
-                    subinQ.offer(new TimeDis(subinPolled.time + 1, subinPolled.distance - 1));
-                }
-                if (subinPolled.distance < bro) {
-                    subinQ.offer(new TimeDis(subinPolled.time + 1, subinPolled.distance * 2));
-                }
+            if (subinPolled < bro && map[subinPolled + 1] == 0) {
+                subinQ.offer(subinPolled + 1);
+                map[subinPolled + 1] = map[subinPolled] + 1;
+            }
+            if (subinPolled > 0 && map[subinPolled - 1] == 0) {
+                subinQ.offer(subinPolled - 1);
+                map[subinPolled - 1] = map[subinPolled] + 1;;
+            }
+            if (subinPolled < bro && map[subinPolled * 2] == 0) {
+                subinQ.offer(subinPolled * 2);
+                map[subinPolled * 2] = map[subinPolled] + 1;
             }
         }
+
         return 0;
     }
 }
