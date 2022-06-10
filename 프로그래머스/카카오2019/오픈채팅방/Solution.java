@@ -5,6 +5,11 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+
 public class Solution {
     class Chat {
         String userId;
@@ -52,14 +57,16 @@ public class Solution {
     }
 
     private void enter(String command, String userId, String username) {
-        userMap.put(userId, username);
+        if (userMap.containsKey(userId)) {
+            userMap.replace(userId, username);
+        } else if (!userMap.containsKey(userId)) {
+            userMap.put(userId, username);
+        }
         chatQ.offer(new Chat(userId, command));
     }
 
     private void leave(String command, String userId) {
-        userMap.remove(userId);
         chatQ.offer(new Chat(userId, command));
-
     }
 
     private void change(String command, String userId, String username) {
@@ -75,7 +82,6 @@ public class Solution {
             if (chat.command.equals(ENTER)) {
                 answer[idx++] = userMap.get(chat.userId) + "님이 들어왔습니다.";
             }
-
             if (chat.command.equals(LEAVE)) {
                 answer[idx++] = userMap.get(chat.userId) + "님이 나갔습니다.";
             }
