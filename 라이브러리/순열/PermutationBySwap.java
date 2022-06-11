@@ -1,40 +1,40 @@
-package 라이브러리;
-
-import java.util.*;
+package 라이브러리.순열;
 
 /**
  * 자바로 순열 구하기
- * 라이브러리.Permutation
+ * swap으로 순열 구현하기
  */
-public class Permutation {
+public class PermutationBySwap {
 
-    private int n;
-    private int r;
-    private int[] now; // 현재 순열
-    private List<List<Integer>> result; // 모든 순열
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4};
+        int n = 4;
+        int r = 3;
 
-    public List<List<Integer>> getResult() {
-        return result;
+        permutation(arr, 0, n, r);
     }
-
-    public Permutation(int n, int r) {
-        this.n = n;
-        this.r = r;
-    }
-
-    public void permutation(int[] arr, int depth) {
-        //  현재 순열이 r일 때 저장한다.
+    public static void permutation(int[] arr, int depth, int n, int r) {
         if (depth == r) {
-            List<Integer> temp = new ArrayList<>();
-            for (int i = 0; i < now.length; i++) {
-                temp.add(now[i]);
-            }
-            result.add(temp);
+            print(arr, r);
             return;
         }
         for (int i = depth; i < n; i++) {
-
+            swap(arr, depth, i);
+            permutation(arr, depth + 1, n, r);
+            swap(arr, depth, i);
         }
     }
-}
+
+    private static void swap(int[] arr, int depth, int i) {
+        int temp = arr[depth];
+        arr[depth] = arr[i];
+        arr[i] = temp;
+    }
+
+    private static void print(int[] arr, int r) {
+        for (int i = 0; i < r; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 }
