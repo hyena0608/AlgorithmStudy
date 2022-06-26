@@ -27,7 +27,7 @@ public class Solution {
                     Q.offer(Integer.valueOf(number));
                 }
             }
-        }
+        } 
 
         for (Integer integer : Q) {
             System.out.print(integer + " ");
