@@ -1,38 +1,43 @@
 package 프로그래머스.카카오2020.문자열압축;
 
 public class Solution {
-    public void solution(String s) {
-        int answer = 0;
-        int length = s.length();
+    public int solution(String s) {
+        int answer = s.length();
 
-        for (int cutLength = 1; cutLength <= length / 2; cutLength++) {
-            int count = 0;
-            String substringOne = null;
-            String substringTwo = null;
-            for (int idx = 0; idx < length - cutLength * 2; idx += cutLength) {
-                substringOne = s.substring(idx, idx + cutLength);
-                substringTwo = s.substring(idx + cutLength, idx + cutLength * 2);
-                System.out.println("substringOne = " + substringOne);
-                System.out.println("substringTwo = " + substringTwo);
-                if (substringOne.equals(substringTwo)) {
-                    s.(substringTwo, "");
-                    count++;
+        for (int i = 1; i <= s.length() / 2; i++) {
+            String zipStr = s.substring(0, i);
+
+            int zipCount = 1;
+            String currentStr = null;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int start = i; start <= s.length(); start += i) {
+                if (start + i >= s.length()) {
+                    currentStr = s.substring(start);
+                } else {
+                    currentStr = s.substring(start, start + i);
                 }
-                System.out.println("count = " + count);
-                System.out.println("s = " + s);
+
+                if (currentStr.equals(zipStr)) {
+                    zipCount++;
+                } else if (zipCount == 1) {
+                    stringBuilder.append(zipStr);
+                    zipStr = currentStr;
+                } else if (zipCount >= 2) {
+                    stringBuilder.append(zipCount).append(zipStr);
+                    zipStr = currentStr;
+                    zipCount = 1;
+                }
             }
-            if (count > 0)
-            s.replaceAll(substringOne, String.valueOf(count + 1));
+            if (i != zipStr.length()) stringBuilder.append(zipStr);
 
-            System.out.println("s = " + s);
+            answer = Math.min(answer, stringBuilder.length());
         }
-
-
-
+        return answer;
     }
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        s.solution("ababcdcdababcdcd");
+        s.solution("aabbaccc");
     }
 }
