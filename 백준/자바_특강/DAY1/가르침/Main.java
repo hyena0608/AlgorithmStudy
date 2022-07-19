@@ -23,17 +23,22 @@ public class Main {
         visited['i' - 'a'] = true;
         visited['c' - 'a'] = true;
 
+        sc.nextLine();
         for (int i = 0; i < N; i++) {
             words[i] = sc.next().replaceAll("[antic]", "");
         }
 
-        selectedCount = 5;
-        answer = countWords();
+        if (K >= 5) {
+            selectedCount = 5;
+            answer = countWords();
 
-        for (int i = 0; i <= 25; i++) {
-            if (visited[i] == false) {
-                dfs(i);
+            for (int i = 0; i < 26; i++) {
+                if (visited[i] == false) {
+                    dfs(i);
+                }
             }
+        } else {
+            answer = 0;
         }
         System.out.println(answer);
     }
@@ -64,10 +69,11 @@ public class Main {
 
     static int countWords() {
         int count = 0;
-        for (String word : words) {
+        for (int n = 0; n < N; n++) {
             boolean isOk = true;
-            for (char c : word.toCharArray()) {
-                if (visited[c - 'a'] == false) {
+            String word = words[n];
+            for (int i = 0; i < word.length(); i++) {
+                if (visited[word.charAt(i) - 'a'] == false) {
                     isOk = false;
                     break;
                 }
