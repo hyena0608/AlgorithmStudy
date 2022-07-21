@@ -1,12 +1,10 @@
 package 백준.자바_특강.DAY3.최대힙;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     static List<Integer> list;
@@ -38,7 +36,7 @@ public class Main {
         int current = list.size() - 1;
         int parent = current / 2;
         while (true) {
-            if (parent == 0 && list.get(parent) <= list.get(current)) {
+            if (parent == 0 || list.get(parent) <= list.get(current)) {
                 break;
             }
 
