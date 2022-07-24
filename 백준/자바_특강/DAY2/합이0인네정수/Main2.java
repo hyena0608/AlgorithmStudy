@@ -7,10 +7,10 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main2 {
 
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream("백준/자바_특강/DAY2/합이0인네정수/input.txt"));
+//        System.setIn(new FileInputStream("백준/자바_특강/DAY2/합이0인네정수/input.txt"));
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -52,18 +52,23 @@ public class Main {
                 // 동률을 구한다
                 long p1Count = 0;
                 long p2Count = 0;
-                do {
-                    // 다음까지 대한 동률 개수 =  + 1
+                int p1Original = p1;
+                while (AB[p1] + CD[p2] == 0) {
+                    // 현재에 대한 동률 개수 =  + 1
                     p1Count++;
-                    // 다음으로 찾을 인덱스 =  p1 +
+                    // 다음으로 찾을 인덱스 =  p1 + 1
                     p1++;
-                    if (p1 >= count) break;
-                } while (AB[p1 - 1] == AB[p1]);
-                do {
+                    if (p1 >= count) {
+                        break;
+                    }
+                }
+                while (AB[p1Original] + CD[p2] == 0) {
                     p2Count++;
                     p2--;
-                    if (p2 < 0) break;
-                } while (CD[p2 + 1] == CD[p2]);
+                    if (p2 < 0) {
+                        break;
+                    }
+                }
                 answer += p1Count * p2Count;
             }
         }

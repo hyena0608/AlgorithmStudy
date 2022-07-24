@@ -47,7 +47,6 @@ public class Main {
                 }
             }
 
-            br.readLine();
             for (int y = 0; y < 4; y++) {
                 for (int x = 0; x < 4; x++) {
                     if (root.hasChild(board[y][x])) {
@@ -58,6 +57,7 @@ public class Main {
 
             System.out.println(sum + " " + answer + " " + count);
             root.clearHit();
+            br.readLine();
         }
     }
 
@@ -131,25 +131,6 @@ public class Main {
         }
         current.isWord = true;
     }
-
-    static boolean findWord(String word) {
-        TrieNode current = root;
-        for (int i = 0; i < word.length(); i++) {
-            char a = word.charAt(i);
-            int index = a - 'A';
-            if (current.child[index] == null) {
-                return false;
-            }
-            current = current.child[index];
-        }
-
-        if (current.isWord == true && current.isHit == false) {
-            current.isHit = true;
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
 
 class TrieNode {
@@ -159,7 +140,7 @@ class TrieNode {
 
     void clearHit() {
         isHit = false;
-        for (int i = 0; i < child.length; i++) {
+        for (int i = 0; i < 26; i++) {
             if (child[i] != null) {
                 child[i].clearHit();
             }
