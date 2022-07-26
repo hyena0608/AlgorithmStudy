@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 public class Main2 {
 
     public static void main(String[] args) throws IOException {
-//        System.setIn(new FileInputStream("백준/자바_특강/DAY2/합이0인네정수/input.txt"));
+//        System.setIn(new FileInputStream("백준/자바_특강/DAY2/합이0인네정수/input.txt.txt"));
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
