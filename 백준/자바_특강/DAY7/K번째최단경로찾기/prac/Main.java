@@ -1,4 +1,4 @@
-package 백준.자바_특강.DAY7.K번째최단경로찾기;
+package 백준.자바_특강.DAY7.K번째최단경로찾기.prac;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -31,7 +31,6 @@ public class Main {
         Arrays.fill(value, MAX);
         value[1] = 0;
         visitedCount = new int[N + 1];
-//        secondValue = new int[N + 1];
 
         for (int i = 0; i < M; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
