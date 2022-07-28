@@ -15,7 +15,7 @@ public class Main {
     static List<Integer>[] edges;
 
     public static void main(String[] args) throws IOException {
-//        System.setIn(new FileInputStream("백준/자바_특강/DAY6/LCA2/input.txt.txt"));
+        System.setIn(new FileInputStream("백준/자바_특강/DAY6/LCA2/input.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         N = Integer.parseInt(br.readLine());
