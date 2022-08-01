@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;prac2/src/사탕상자/input.xtx&apos; to &apos;input.txt&apos;" description="Rename resource &apos;input.xtx&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/사탕상자/input.xtx" name="input.txt" stamp="1659328416039" updateReferences="true"/>
+</session>
