@@ -1,0 +1,103 @@
+package 거의최단경로_5719;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main {
+	
+	static int N, M;
+	static int S, D;
+	static int MAX_N = 500, MAX_M = 10000;
+	static int a, b, w;
+	static int dist[];
+	static int[][] adj;
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+
+		adj = new int[MAX_N][MAX_N];
+		dist = new int[MAX_N];
+	
+		while (true) {
+			st = new StringTokenizer(br.readLine());
+			
+			N = Integer.parseInt(st.nextToken());
+			M = Integer.parseInt(st.nextToken());
+			if (N == 0 && M == 0) break;
+			
+			st = new StringTokenizer(br.readLine());
+			
+			S = Integer.parseInt(st.nextToken());
+			D = Integer.parseInt(st.nextToken());
+			
+			for (int i = 0; i < M; i++) {
+				st = new StringTokenizer(br.readLine());
+				
+				a = Integer.parseInt(st.nextToken());
+				b = Integer.parseInt(st.nextToken());
+				w = Integer.parseInt(st.nextToken());
+				
+				adj[a][b] = w;
+			}
+			
+			dijkstra(S, D);
+			removeMinPath(D);
+			dijkstra(S, D);
+			if (dist[D] == Integer.MAX_VALUE) System.out.print(-1);
+			else System.out.print(dist[D]);
+		}
+	
+	
+	static void removeMinPath(int D) {
+		Queue<Integer> queue = new LinkedList<>();
+		queue.add(D);
+		while (!queue.isEmpty()) {
+			int curr = queue.poll();
+			for (int i = 0; i < N; i++) {
+				if (adj[i][curr] != 0 && dist[curr] == adj[i][curr] + dist[i]) {
+					adj[i][curr] = 0;
+					queue.add(i);
+				}
+			}
+		}
+	}
+	
+	static void dijkstra(int S, int D) {
+		Arrays.fill(dist, Integer.MAX_VALUE);
+		PriorityQueue<Route> queue = new PriorityQueue<>();
+		queue.add(new Route(S, 0));
+		
+		while (!queue.isEmpty()) {
+			Route curr = queue.poll();
+			if (dist[curr.v] < curr.weight) continue;
+			for (int i = 0; i < N; i++) {
+				if (adj[curr.v][i] == 0) continue;
+				int newWeight = curr.weight + adj[curr.v][i];
+				if (newWeight < dist[i]) {
+					dist[i] = newWeight;
+					queue.add(new Route(i, newWeight));
+				}
+			}
+		}
+	}
+	
+}
+
+class Route {
+	int v, weight;
+	
+	public Route(int v, int weight) {
+		this.v = v;
+		this.weight = weight;
+	}
+	
+	public int getWeight() {
+		return weight;
+	}
+}

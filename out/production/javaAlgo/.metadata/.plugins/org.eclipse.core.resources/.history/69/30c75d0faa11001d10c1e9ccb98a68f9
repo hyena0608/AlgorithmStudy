@@ -1,0 +1,48 @@
+package 일로만들기_1463;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	static int[] dp;
+	static int MAX_NUM = 1000000;
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+
+		dp = new int[MAX_NUM + 1];
+		Arrays.fill(dp, MAX_NUM + 1);
+
+		if (n == 1) System.out.println(1);
+		else {
+			dfs(0, n);
+			System.out.println(dp[1]);
+		}
+
+	}
+
+	static int dfs(int L, int n) {
+
+		if (n == 1) return dp[n] = Math.min(dp[n], L);
+
+		if (n > 1) {			
+			if (n % 3 == 0) {
+				if (dp[n / 3] > L + 1)
+					dp[n / 3] = Math.min(dp[n / 3], dfs(L + 1, n / 3));
+			}
+			if (n % 2 == 0) {
+				if (dp[n / 2] > L + 1)
+					dp[n / 2] = Math.min(dp[n / 2], dfs(L + 1, n / 2));
+			}
+			if (dp[n - 1] > L + 1)
+				dp[n - 1] = Math.min(dp[n / 2], dfs(L + 1, n - 1));
+		}
+		
+		return MAX_NUM + 1;
+	}
+
+}
