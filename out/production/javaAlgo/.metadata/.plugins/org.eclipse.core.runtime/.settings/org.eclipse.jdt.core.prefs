@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
-org.eclipse.jdt.core.classpathVariable.JRE_LIB=/Library/Java/JavaVirtualMachines/jdk-11.0.14.jdk/Contents/Home/lib/jrt-fs.jar
-org.eclipse.jdt.core.classpathVariable.JRE_SRC=/Library/Java/JavaVirtualMachines/jdk-11.0.14.jdk/Contents/Home/lib/src.zip
+org.eclipse.jdt.core.classpathVariable.JRE_LIB=/Users/hyunseo/Library/Java/JavaVirtualMachines/corretto-1.8.0_332/Contents/Home/jre/lib/rt.jar
+org.eclipse.jdt.core.classpathVariable.JRE_SRC=/Users/hyunseo/Library/Java/JavaVirtualMachines/corretto-1.8.0_332/Contents/Home/src.zip
 org.eclipse.jdt.core.classpathVariable.JRE_SRCROOT=
 org.eclipse.jdt.core.codeComplete.visibilityCheck=enabled
 org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
