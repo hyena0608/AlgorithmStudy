@@ -30,29 +30,27 @@ public class Main {
 
         List<Point> stores = new ArrayList<>();
         Queue<Point> Q = new LinkedList<>();
-        Q.add(new Point());
+        Q.add(new Point(new ArrayList<>()));
         while (!Q.isEmpty()) {
             Point curr = Q.poll();
 
             if (curr.checkStickSizeFull()) {
-                int findMax = findMax(curr.getStickIndexes());
-                maxButMin = Math.min(maxButMin, findMax);
+                maxButMin = Math.min(maxButMin, findMax(curr.getStickIndexes()));
                 continue;
             }
 
             for (int idx = 1; idx < N; idx++) {
                 int stickIdx = idx * 2 - 1;
 
-                if (!curr.checkStickSizeFull() && !curr.checkStickExists(stickIdx)) {
-
+                if (!curr.checkStickExists(stickIdx)) {
                     curr.addStick(stickIdx);
 
                     boolean checkAlreadyExists = stores.stream()
                             .anyMatch(store -> store.checkSame(curr.getStickIndexes()));
 
                     if (!checkAlreadyExists) {
-                            Q.add(curr);
-                            stores.add(curr);
+                        Q.add(curr.clone());
+                        stores.add(curr.clone());
                     }
 
                     curr.removeStick(stickIdx);
@@ -65,14 +63,17 @@ public class Main {
     }
 
     public static int findMax(List<Integer> stickIndexes) {
+        stickIndexes.add(0);
+        stickIndexes.add(N * 2);
         Collections.sort(stickIndexes);
 
         int max = Integer.MIN_VALUE;
-        for (int i = 0; i < stickIndexes.size() - 1; i++) {
+        for (int i = 0; i < M; i++) {
+            int left = stickIndexes.get(i);
+            int right = stickIndexes.get(i + 1);
             int sum = 0;
-            for (int j = stickIndexes.get(i); j <= stickIndexes.get(i + 1); j++) {
-                if (arr[i] % 2 != 0) continue;
-                sum += arr[i];
+            for (int j = left; j <= right; j++) {
+                sum += arr[j];
             }
             max = Math.max(max, sum);
         }
@@ -81,7 +82,12 @@ public class Main {
     }
 
     static class Point {
-        private final List<Integer> stickIndexes = new ArrayList<>();
+        private final List<Integer> stickIndexes;
+
+        public Point(List<Integer> sticks) {
+            stickIndexes = new ArrayList<>();
+            stickIndexes.addAll(sticks);
+        }
 
         public void addStick(Integer stick) {
             if (stickIndexes.contains(stick)) return;
@@ -94,7 +100,7 @@ public class Main {
         }
 
         public boolean checkStickSizeFull() {
-            return stickIndexes.size() == M;
+            return stickIndexes.size() == M - 1;
         }
 
         public boolean checkStickExists(int stick) {
@@ -107,6 +113,10 @@ public class Main {
 
         public List<Integer> getStickIndexes() {
             return stickIndexes;
+        }
+
+        public Point clone() {
+            return new Point(this.getStickIndexes());
         }
     }
 }
