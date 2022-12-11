@@ -1,3 +1,0 @@
-eclipse.preferences.version=1
-org.eclipse.jdt.launching.PREF_DEFAULT_ENVIRONMENTS_XML=
-org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<vmSettings defaultVM\="52,org.eclipse.jdt.internal.launching.macosx.MacOSXType21,com.amazon.corretto.8" defaultVMConnector\="">\n    <vmType id\="org.eclipse.jdt.internal.launching.macosx.MacOSXType">\n        <vm id\="com.oracle.java.11.0.14.jdk" name\="Java SE 11.0.14 [11.0.14]" path\="/Library/Java/JavaVirtualMachines/jdk-11.0.14.jdk/Contents/Home"/>\n        <vm id\="com.amazon.corretto.8" name\="Amazon Corretto 8 [1.8.0_332]" path\="/Users/hyunseo/Library/Java/JavaVirtualMachines/corretto-1.8.0_332/Contents/Home"/>\n    </vmType>\n</vmSettings>\n
